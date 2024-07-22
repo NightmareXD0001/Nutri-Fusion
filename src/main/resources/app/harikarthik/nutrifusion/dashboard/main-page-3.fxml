@@ -48,7 +48,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="216.0">
                <children>
-                  <Label text="Your Diet" textFill="WHITE">
+                  <Label onMouseClicked="#switchpage2" text="Your Diet" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="24.0" />
                      </font>
@@ -57,7 +57,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="216.0">
                <children>
-                  <Label text="Updates" textFill="WHITE">
+                  <Label onMouseClicked="#switchpage3" text="Updates" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="24.0" />
                      </font>
@@ -66,7 +66,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="216.0">
                <children>
-                  <Label text="Fusion Pro 👑">
+                  <Label onMouseClicked="#switchpage3" text="Fusion Pro 👑">
                      <font>
                         <Font name="Calibri Bold" size="24.0" />
                      </font>
@@ -96,7 +96,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="216.0">
                <children>
-                  <Label text="Contact Us" textFill="WHITE">
+                  <Label onMouseClicked="#switchpage3" text="Contact Us" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="22.0" />
                      </font>
