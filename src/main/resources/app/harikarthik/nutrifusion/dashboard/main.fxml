@@ -57,7 +57,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="216.0">
                <children>
-                  <Label text="Updates" textFill="WHITE">
+                  <Label onMouseClicked="#switchpage3" text="Updates" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="24.0" />
                      </font>

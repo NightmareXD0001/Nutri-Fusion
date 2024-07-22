@@ -2,21 +2,22 @@ package app.harikarthik.nutrifusion.dashboard;
 
 import app.harikarthik.nutrifusion.MainApplication;
 import app.harikarthik.nutrifusion.login.LoginController;
-import com.sun.tools.javac.Main;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
+import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.awt.*;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Objects;
@@ -38,6 +39,9 @@ public class MainController {
 
     @FXML
     private ImageView user_logo;
+    @FXML
+    private Label comingSoonLabel;
+
 
     public void setUsername(){
         String username = LoginController.loadQuickLoginUsername();
@@ -65,8 +69,12 @@ public class MainController {
     public void switchpage1(){
         MainApplication.switchDashboard();
     }
+    public void switchpage3(){
+        MainApplication.switchDashboard3();
+    }
 
-    private void openWorkDialog(String diet_name, String age, Stage stage) {
+
+    private void openWorkDialog(String diet_name, String age, String gender, String weight, String height, String primary_goal, String dietary_preferences, String food_allergies, String activity_level, Stage stage) {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Enter your job");
         dialog.setHeaderText("Enter a brief description about your job and your daily routines for the diet plan:");
@@ -89,7 +97,215 @@ public class MainController {
         }
         // Get the user input
         Optional<String> result = dialog.showAndWait();
-        result.ifPresent(work -> fetch_diet(diet_name, age, work, stage.getScene()));
+        result.ifPresent(job -> fetch_diet(diet_name, age, gender, weight, height, primary_goal, dietary_preferences, food_allergies, activity_level, job, stage.getScene()));
+    }
+
+    private void openActivityLevelDialog(String diet_name, String age, String gender, String weight, String height, String primary_goal, String dietary_preferences, String food_allergies, Stage stage) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Enter Activity Level");
+        dialog.setHeaderText("Enter your current activity level (e.g., sedentary, lightly active, moderately active, very active):");
+        dialog.setContentText("Activity Level:");
+        try {
+            Field dialogPaneField = dialog.getClass().getDeclaredField("dialogPane");
+            dialogPaneField.setAccessible(true);
+            Object dialogPane = dialogPaneField.get(dialog);
+
+            Field sceneField = dialogPane.getClass().getDeclaredField("scene");
+            sceneField.setAccessible(true);
+            Scene dialogScene = (Scene) sceneField.get(dialogPane);
+
+            Platform.runLater(() -> {
+                Stage dialogStage = (Stage) dialogScene.getWindow();
+                dialogStage.getIcons().add(new Image("src/main/resources/app/harikarthik/nutrifusion/logo.png"));
+            });
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        // Get the user input
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(activity_level -> openWorkDialog(diet_name, age, gender, weight, height, primary_goal, dietary_preferences, food_allergies, activity_level, stage));
+    }
+
+    private void openFoodAllergiesDialog(String diet_name, String age, String gender, String weight, String height, String primary_goal, String dietary_preferences, Stage stage) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Enter Food Allergies");
+        dialog.setHeaderText("Enter any food allergies or intolerances you have (e.g., gluten, dairy, nuts):");
+        dialog.setContentText("Food Allergies:");
+        try {
+            Field dialogPaneField = dialog.getClass().getDeclaredField("dialogPane");
+            dialogPaneField.setAccessible(true);
+            Object dialogPane = dialogPaneField.get(dialog);
+
+            Field sceneField = dialogPane.getClass().getDeclaredField("scene");
+            sceneField.setAccessible(true);
+            Scene dialogScene = (Scene) sceneField.get(dialogPane);
+
+            Platform.runLater(() -> {
+                Stage dialogStage = (Stage) dialogScene.getWindow();
+                dialogStage.getIcons().add(new Image("src/main/resources/app/harikarthik/nutrifusion/logo.png"));
+            });
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        // Get the user input
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(food_allergies -> openActivityLevelDialog(diet_name, age, gender, weight, height, primary_goal, dietary_preferences, food_allergies, stage));
+    }
+
+    private void openDietaryPreferencesDialog(String diet_name, String age, String gender, String weight, String height, String primary_goal, Stage stage) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Enter Dietary Preferences");
+        dialog.setHeaderText("Enter your dietary preferences (e.g., vegetarian, vegan, keto, paleo):");
+        dialog.setContentText("Dietary Preferences:");
+        try {
+            Field dialogPaneField = dialog.getClass().getDeclaredField("dialogPane");
+            dialogPaneField.setAccessible(true);
+            Object dialogPane = dialogPaneField.get(dialog);
+
+            Field sceneField = dialogPane.getClass().getDeclaredField("scene");
+            sceneField.setAccessible(true);
+            Scene dialogScene = (Scene) sceneField.get(dialogPane);
+
+            Platform.runLater(() -> {
+                Stage dialogStage = (Stage) dialogScene.getWindow();
+                dialogStage.getIcons().add(new Image("src/main/resources/app/harikarthik/nutrifusion/logo.png"));
+            });
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        // Get the user input
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(dietary_preferences -> openFoodAllergiesDialog(diet_name, age, gender, weight, height, primary_goal, dietary_preferences, stage));
+    }
+
+    private void openPrimaryGoalDialog(String diet_name, String age, String gender, String weight, String height, Stage stage) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Enter Primary Goal");
+        dialog.setHeaderText("Enter your primary health goal (e.g., weight loss, muscle gain, maintenance, improved energy levels):");
+        dialog.setContentText("Primary Goal:");
+        try {
+            Field dialogPaneField = dialog.getClass().getDeclaredField("dialogPane");
+            dialogPaneField.setAccessible(true);
+            Object dialogPane = dialogPaneField.get(dialog);
+
+            Field sceneField = dialogPane.getClass().getDeclaredField("scene");
+            sceneField.setAccessible(true);
+            Scene dialogScene = (Scene) sceneField.get(dialogPane);
+
+            Platform.runLater(() -> {
+                Stage dialogStage = (Stage) dialogScene.getWindow();
+                dialogStage.getIcons().add(new Image("src/main/resources/app/harikarthik/nutrifusion/logo.png"));
+            });
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        // Get the user input
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(primary_goal -> openDietaryPreferencesDialog(diet_name, age, gender, weight, height, primary_goal, stage));
+    }
+
+    private void openHeightDialog(String diet_name, String age, String gender, String weight, Stage stage) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Enter Height");
+        dialog.setHeaderText("Enter your height (in cm):");
+        dialog.setContentText("Height:");
+        try {
+            Field dialogPaneField = dialog.getClass().getDeclaredField("dialogPane");
+            dialogPaneField.setAccessible(true);
+            Object dialogPane = dialogPaneField.get(dialog);
+
+            Field sceneField = dialogPane.getClass().getDeclaredField("scene");
+            sceneField.setAccessible(true);
+            Scene dialogScene = (Scene) sceneField.get(dialogPane);
+
+            Platform.runLater(() -> {
+                Stage dialogStage = (Stage) dialogScene.getWindow();
+                dialogStage.getIcons().add(new Image("src/main/resources/app/harikarthik/nutrifusion/logo.png"));
+            });
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        // Get the user input
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(height -> openPrimaryGoalDialog(diet_name, age, gender, weight, height, stage));
+    }
+
+    private void openWeightDialog(String diet_name, String age, String gender, Stage stage) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Enter Weight");
+        dialog.setHeaderText("Enter your weight (in kg):");
+        dialog.setContentText("Weight:");
+        try {
+            Field dialogPaneField = dialog.getClass().getDeclaredField("dialogPane");
+            dialogPaneField.setAccessible(true);
+            Object dialogPane = dialogPaneField.get(dialog);
+
+            Field sceneField = dialogPane.getClass().getDeclaredField("scene");
+            sceneField.setAccessible(true);
+            Scene dialogScene = (Scene) sceneField.get(dialogPane);
+
+            Platform.runLater(() -> {
+                Stage dialogStage = (Stage) dialogScene.getWindow();
+                dialogStage.getIcons().add(new Image("src/main/resources/app/harikarthik/nutrifusion/logo.png"));
+            });
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        // Get the user input
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(weight -> openHeightDialog(diet_name, age, gender, weight, stage));
+    }
+
+    private void openGenderDialog(String diet_name, String age, Stage stage) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Enter Gender");
+        dialog.setHeaderText("Enter your gender:");
+        dialog.setContentText("Gender:");
+        try {
+            Field dialogPaneField = dialog.getClass().getDeclaredField("dialogPane");
+            dialogPaneField.setAccessible(true);
+            Object dialogPane = dialogPaneField.get(dialog);
+
+            Field sceneField = dialogPane.getClass().getDeclaredField("scene");
+            sceneField.setAccessible(true);
+            Scene dialogScene = (Scene) sceneField.get(dialogPane);
+
+            Platform.runLater(() -> {
+                Stage dialogStage = (Stage) dialogScene.getWindow();
+                dialogStage.getIcons().add(new Image("src/main/resources/app/harikarthik/nutrifusion/logo.png"));
+            });
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        // Get the user input
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(gender -> openWeightDialog(diet_name, age, gender, stage));
+    }
+
+    private void openAgeDialog(String diet_name, Stage stage) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Enter Age");
+        dialog.setHeaderText("Enter your current age:");
+        dialog.setContentText("Age:");
+        try {
+            Field dialogPaneField = dialog.getClass().getDeclaredField("dialogPane");
+            dialogPaneField.setAccessible(true);
+            Object dialogPane = dialogPaneField.get(dialog);
+
+            Field sceneField = dialogPane.getClass().getDeclaredField("scene");
+            sceneField.setAccessible(true);
+            Scene dialogScene = (Scene) sceneField.get(dialogPane);
+
+            Platform.runLater(() -> {
+                Stage dialogStage = (Stage) dialogScene.getWindow();
+                dialogStage.getIcons().add(new Image("src/main/resources/app/harikarthik/nutrifusion/logo.png"));
+            });
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        // Get the user input
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(age -> openGenderDialog(diet_name, age, stage));
     }
 
     private void openDietNameDialog(Stage stage) {
@@ -115,34 +331,9 @@ public class MainController {
         }
         // Get the user input
         Optional<String> result = dialog.showAndWait();
-        result.ifPresent(name -> openAgeialog(name, stage));
+        result.ifPresent(diet_name -> openAgeDialog(diet_name, stage));
     }
 
-    private void openAgeialog(String name, Stage stage) {
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Enter age");
-        dialog.setHeaderText("Enter your current age:");
-        dialog.setContentText("Name:");
-        try {
-            Field dialogPaneField = dialog.getClass().getDeclaredField("dialogPane");
-            dialogPaneField.setAccessible(true);
-            Object dialogPane = dialogPaneField.get(dialog);
-
-            Field sceneField = dialogPane.getClass().getDeclaredField("scene");
-            sceneField.setAccessible(true);
-            Scene dialogScene = (Scene) sceneField.get(dialogPane);
-
-            Platform.runLater(() -> {
-                Stage dialogStage = (Stage) dialogScene.getWindow();
-                dialogStage.getIcons().add(new Image("src/main/resources/app/harikarthik/nutrifusion/logo.png"));
-            });
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        // Get the user input
-        Optional<String> result = dialog.showAndWait();
-        result.ifPresent(age -> openWorkDialog(name, age, stage));
-    }
 
     public void ondietCreateClick(){
         openDietNameDialog(MainApplication.primaryStage);

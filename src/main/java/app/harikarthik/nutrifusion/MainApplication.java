@@ -24,6 +24,7 @@ public class MainApplication extends Application {
     private static Scene registrationSecondScene;
     private static Scene dashboardScene;
     private static Scene dashboardScene2;
+    private static Scene dashboardScene3;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -132,6 +133,27 @@ public class MainApplication extends Application {
             controller.setUsername();
             controller.setGenderLogo();// Call the method on the controller instance
             primaryStage.setScene(dashboardScene2);
+            primaryStage.setResizable(false);
+            PauseTransition pause = new PauseTransition(Duration.millis(10));
+            pause.setOnFinished(event -> {
+                primaryStage.centerOnScreen();
+            });
+            pause.play();
+            primaryStage.setTitle("Nutri Fusion v1.3.7");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void switchDashboard3() {
+        try {
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(MainApplication.class.getResource("dashboard/main-page-3.fxml")));
+            Parent root = loader.load();
+            MainApplication.dashboardScene3 = new Scene(root);
+            MainController controller = loader.getController();
+            controller.setUsername();
+            controller.setGenderLogo();// Call the method on the controller instance
+            primaryStage.setScene(dashboardScene3);
             primaryStage.setResizable(false);
             PauseTransition pause = new PauseTransition(Duration.millis(10));
             pause.setOnFinished(event -> {
