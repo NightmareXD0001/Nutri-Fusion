@@ -1,0 +1,21 @@
+.button_menu{
+    -fx-background-color:#ed6636
+}
+
+.cursor_hand{
+    -fx-cursor:hand
+}
+.logo_button{
+    -fx-background-color:#043730
+
+}
+.logo_button:hover{
+    -fx-background-color:#043730
+}
+.view_button{
+    -fx-background-color:#9ebd73
+
+}
+.view_button:hover{
+    -fx-background-color:#ed6636
+}

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.harikarthik.nutrifusion.login.RegisterController">
+   <right>
+      <VBox prefWidth="332.0" style="-fx-background-color: #f8f2e6;" styleClass="vbox_background_right" stylesheets="@login.css" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" prefHeight="126.0" prefWidth="332.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nutri Fusion" wrappingWidth="209.07421875">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="9.0" prefWidth="332.0">
+               <children>
+                  <Label prefHeight="27.0" prefWidth="187.0" text="Enter Date of Birth" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="32.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="332.0">
+               <children>
+                  <DatePicker fx:id="dobField" prefHeight="38.0" prefWidth="273.0" promptText="DD/MM/YYYY" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="9.0" prefWidth="332.0">
+               <children>
+                  <Label text="Gender" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="32.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="42.0" prefWidth="332.0">
+               <children>
+                  <RadioButton fx:id="gender_MaleField" mnemonicParsing="false" text="Male" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </RadioButton>
+                  <RadioButton fx:id="gender_FemaleField" mnemonicParsing="false" text="Female" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </RadioButton>
+                  <RadioButton fx:id="gender_OtherField" mnemonicParsing="false" text="Other" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </RadioButton>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="332.0">
+               <children>
+                  <Button fx:id="registerButton" mnemonicParsing="false" onAction="#handleRegistrationSecond" prefHeight="38.0" prefWidth="267.0" style="-fx-background-radius: 50; -fx-border-radius: 50;" stylesheets="@login.css" text="Next">
+                     <font>
+                        <Font name="Calibri Bold" size="20.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="login_button" />
+                        <String fx:value="cursor_hand" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </right>
+   <center>
+      <VBox prefWidth="449.0" styleClass="vbox_background_center" stylesheets="@login.css" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="37.0" prefWidth="90.0" style="-fx-background-radius: 50;" styleClass="sign_up_button" stylesheets="@login.css" text="Register">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchlogin" prefHeight="37.0" prefWidth="90.0" style="-fx-background-radius: 50;" stylesheets="@login.css" text="Login" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="cursor_hand" />
+                        <String fx:value="login_button" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </HBox>
+            <VBox alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="0.0" prefWidth="448.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="   NutriFusion" textOrigin="CENTER" wrappingWidth="392.13671875">
+                           <font>
+                              <Font name="Impact" size="64.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="0.0" prefWidth="448.0">
+                     <children>
+                        <Text fill="#6f9479" strokeType="OUTSIDE" strokeWidth="0.0" text="  Fueling Wellness," wrappingWidth="392.13671875">
+                           <font>
+                              <Font name="Impact" size="48.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="0.0" prefWidth="448.0">
+                     <children>
+                        <Text fill="#6f9479" strokeType="OUTSIDE" strokeWidth="0.0" text="           Naturally!" wrappingWidth="392.13671875">
+                           <font>
+                              <Font name="Impact" size="48.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
