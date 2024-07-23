@@ -74,7 +74,7 @@ public class MainController {
     }
 
 
-    private void openWorkDialog(String diet_name, String age, String gender, String weight, String height, String primary_goal, String dietary_preferences, String food_allergies, String activity_level, Stage stage) {
+    private void openWorkDialog(String diet_name, String age, String gender, String weight, String height, String primary_goal, String dietary_preferences, String food_allergies, String activity_level, String daily_calorie_intake, Stage stage) {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Enter your job");
         dialog.setHeaderText("Enter a brief description about your job and your daily routines for the diet plan:");
@@ -97,7 +97,33 @@ public class MainController {
         }
         // Get the user input
         Optional<String> result = dialog.showAndWait();
-        result.ifPresent(job -> fetch_diet(diet_name, age, gender, weight, height, primary_goal, dietary_preferences, food_allergies, activity_level, job, stage.getScene()));
+        result.ifPresent(job -> fetch_diet(diet_name, age, gender, weight, height, primary_goal, dietary_preferences, food_allergies, activity_level, daily_calorie_intake, job, stage.getScene()));
+    }
+
+    private void openCalorieIntakeDialog(String diet_name, String age, String gender, String weight, String height, String primary_goal, String dietary_preferences, String food_allergies, String activity_level, Stage stage) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Enter Daily Calorie Intake");
+        dialog.setHeaderText("Enter your desired daily calorie intake:");
+        dialog.setContentText("Daily Calorie Intake:");
+        try {
+            Field dialogPaneField = dialog.getClass().getDeclaredField("dialogPane");
+            dialogPaneField.setAccessible(true);
+            Object dialogPane = dialogPaneField.get(dialog);
+
+            Field sceneField = dialogPane.getClass().getDeclaredField("scene");
+            sceneField.setAccessible(true);
+            Scene dialogScene = (Scene) sceneField.get(dialogPane);
+
+            Platform.runLater(() -> {
+                Stage dialogStage = (Stage) dialogScene.getWindow();
+                dialogStage.getIcons().add(new Image("src/main/resources/app/harikarthik/nutrifusion/logo.png"));
+            });
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        // Get the user input
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(daily_calorie_intake -> openWorkDialog(diet_name, age, gender, weight, height, primary_goal, dietary_preferences, food_allergies, activity_level, daily_calorie_intake, stage));
     }
 
     private void openActivityLevelDialog(String diet_name, String age, String gender, String weight, String height, String primary_goal, String dietary_preferences, String food_allergies, Stage stage) {
@@ -123,7 +149,7 @@ public class MainController {
         }
         // Get the user input
         Optional<String> result = dialog.showAndWait();
-        result.ifPresent(activity_level -> openWorkDialog(diet_name, age, gender, weight, height, primary_goal, dietary_preferences, food_allergies, activity_level, stage));
+        result.ifPresent(activity_level -> openCalorieIntakeDialog(diet_name, age, gender, weight, height, primary_goal, dietary_preferences, food_allergies, activity_level, stage));
     }
 
     private void openFoodAllergiesDialog(String diet_name, String age, String gender, String weight, String height, String primary_goal, String dietary_preferences, Stage stage) {
