@@ -2,8 +2,6 @@ module app.harikarthik.nutrifusion {
     requires javafx.controls;
     requires javafx.fxml;
 
-    requires com.dlsc.formsfx;
-    requires org.kordamp.ikonli.javafx;
     requires java.desktop;
     requires java.sql;
     requires org.json;

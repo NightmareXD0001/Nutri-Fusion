@@ -242,7 +242,7 @@
                                                    <children>
                                                       <Label fx:id="comingSoonLabel" prefHeight="67.0" prefWidth="408.0" text="Coming soon....">
                                                          <font>
-                                                            <Font name="Calibri Bold" size="48.0" />
+                                                            <Font name="Lucida Calligraphy Italic" size="48.0" />
                                                          </font>
                                                          <VBox.margin>
                                                             <Insets left="25.0" top="10.0" />

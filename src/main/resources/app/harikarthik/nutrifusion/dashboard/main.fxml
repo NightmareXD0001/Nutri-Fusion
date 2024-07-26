@@ -396,6 +396,15 @@
                                                       </HBox>
                                                    </children>
                                                 </HBox>
+                                                <HBox alignment="CENTER" prefHeight="292.0" prefWidth="443.0">
+                                                   <children>
+                                                      <Label text="Coming Soon....">
+                                                         <font>
+                                                            <Font name="Lucida Calligraphy Italic" size="48.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
                                              </children>
                                           </VBox>
                                        </children>
@@ -432,6 +441,15 @@
                                                       </Button>
                                                    </children>
                                                 </HBox>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="391.0" prefWidth="320.0">
+                                             <children>
+                                                <Label text="Coming Soon....">
+                                                   <font>
+                                                      <Font name="Lucida Calligraphy Italic" size="36.0" />
+                                                   </font>
+                                                </Label>
                                              </children>
                                           </HBox>
                                        </children>
@@ -483,6 +501,20 @@
                                     <Insets left="5.0" />
                                  </VBox.margin>
                               </HBox>
+                              <VBox alignment="CENTER" prefHeight="541.0" prefWidth="182.0">
+                                 <children>
+                                    <Label text="Coming">
+                                       <font>
+                                          <Font name="Lucida Calligraphy Italic" size="36.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Soon....">
+                                       <font>
+                                          <Font name="Lucida Calligraphy Italic" size="36.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
                            </children>
                         </VBox>
                      </children>

@@ -32,10 +32,8 @@ public class MainApplication extends Application {
             if (!LoginController.checkfirstJoin()) {
                 MainApplication.primaryStage = primaryStage;
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login/registration.fxml")));
-                primaryStage.setTitle("Nutri Fusion Auth v1.3.7");
+                primaryStage.setTitle("Nutri Fusion Auth v1.14.74 stable-build");
                 Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("logo.png")));
-
-                // Add the icon to the stage
                 primaryStage.getIcons().add(icon);
                 registrationScene = new Scene(root);
                 primaryStage.setScene(registrationScene);
@@ -46,10 +44,8 @@ public class MainApplication extends Application {
             else {
                 MainApplication.primaryStage = primaryStage;
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login/login.fxml")));
-                primaryStage.setTitle("Nutri Fusion Auth v1.3.7");
+                primaryStage.setTitle("Nutri Fusion Auth v1.14.74 stable-build");
                 Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("logo.png")));
-
-                // Add the icon to the stage
                 primaryStage.getIcons().add(icon);
                 loginScene = new Scene(root);
                 primaryStage.setScene(loginScene);
@@ -109,8 +105,7 @@ public class MainApplication extends Application {
             MainApplication.dashboardScene = new Scene(root);
             MainController controller = loader.getController();
             controller.setUsername();
-            controller.setGenderLogo();// Call the method on the controller instance
-
+            controller.setGenderLogo();
             primaryStage.setScene(dashboardScene);
             primaryStage.setResizable(false);
             PauseTransition pause = new PauseTransition(Duration.millis(10));
@@ -118,7 +113,7 @@ public class MainApplication extends Application {
                 primaryStage.centerOnScreen();
             });
             pause.play();
-            primaryStage.setTitle("Nutri Fusion v1.3.7");
+            primaryStage.setTitle("Nutri Fusion v1.14.74 stable-build");
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -131,7 +126,7 @@ public class MainApplication extends Application {
             MainApplication.dashboardScene2 = new Scene(root);
             MainController controller = loader.getController();
             controller.setUsername();
-            controller.setGenderLogo();// Call the method on the controller instance
+            controller.setGenderLogo();
             primaryStage.setScene(dashboardScene2);
             primaryStage.setResizable(false);
             PauseTransition pause = new PauseTransition(Duration.millis(10));
@@ -139,7 +134,7 @@ public class MainApplication extends Application {
                 primaryStage.centerOnScreen();
             });
             pause.play();
-            primaryStage.setTitle("Nutri Fusion v1.3.7");
+            primaryStage.setTitle("Nutri Fusion v1.14.74 stable-build");
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -152,7 +147,7 @@ public class MainApplication extends Application {
             MainApplication.dashboardScene3 = new Scene(root);
             MainController controller = loader.getController();
             controller.setUsername();
-            controller.setGenderLogo();// Call the method on the controller instance
+            controller.setGenderLogo();
             primaryStage.setScene(dashboardScene3);
             primaryStage.setResizable(false);
             PauseTransition pause = new PauseTransition(Duration.millis(10));
@@ -160,7 +155,7 @@ public class MainApplication extends Application {
                 primaryStage.centerOnScreen();
             });
             pause.play();
-            primaryStage.setTitle("Nutri Fusion v1.3.7");
+            primaryStage.setTitle("Nutri Fusion v1.14.74 stable-build");
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();

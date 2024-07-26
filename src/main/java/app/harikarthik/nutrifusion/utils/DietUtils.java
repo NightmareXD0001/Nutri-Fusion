@@ -3,15 +3,9 @@ package app.harikarthik.nutrifusion.utils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.application.Platform;
-import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.awt.*;
 import java.io.File;
@@ -42,7 +36,8 @@ public class DietUtils {
         }
         String apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyABbpqeuqv_bOhJLUm7Jjl9iOLAaWknj5Y"; // Replace with your actual API key
 
-        String jsonBody = "{\"contents\":[{\"parts\":[{\"text\":\"Imagine you are a professional nutritionist. Provide a full diet plan for a person who is " + age + " years old, " + gender + ", weighs " + weight + " kg, is " + height + " cm tall, with a primary goal of " + primary_goal + ". This person is working as a " + job + " and prefers " + dietary_preferences + " diet, has allergies to " + food_allergies + ", and has an activity level of " + activity_level + ". He wants a daily calorie intake of " + daily_calorie + ". Ensure that the plan supports holistic development, addressing not only physical health but also nurturing the mind and soul. Specifically, incorporate strategies that enhance the well-being of the mind, body, and soul. Present the plan in a professional and sophisticated manner, avoiding any disclaimers or suggestions to consult a healthcare professional.\"}]}]}";        HttpClient client = HttpClient.newHttpClient();
+        String jsonBody = "{\"contents\":[{\"parts\":[{\"text\":\"Imagine you are a professional nutritionist. Provide a full diet plan for a person who is " + age + " years old, " + gender + ", weighs " + weight + " kg, is " + height + " cm tall, with a primary goal of " + primary_goal + ". This person is working as a " + job + " and prefers " + dietary_preferences + " diet, has allergies to " + food_allergies + ", and has an activity level of " + activity_level + ". He wants a daily calorie intake of " + daily_calorie + ". Ensure that the plan supports holistic development, addressing not only physical health but also nurturing the mind and soul. Specifically, incorporate strategies that enhance the well-being of the mind, body, and soul. Present the plan in a professional and sophisticated manner, avoiding any disclaimers or suggestions to consult a healthcare professional.\"}]}]}";
+        HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(apiUrl))
                 .header("Content-Type", "application/json")
@@ -66,7 +61,9 @@ public class DietUtils {
                                 .asText();
 
                         // Remove unnecessary characters
-                        content = content.replace("**", "").replace("## ", "").replace("*", "→");
+                        content = content.replace("**", "")
+                                .replace("## ", "")
+                                .replace("*", "→");
 
                         if (!file1.exists()) {
                             writeFileAndOpen(file1, content);
@@ -75,7 +72,6 @@ public class DietUtils {
                         } else {
                             writeFileAndOpen(file3, content);
                         }
-                        //Platform.runLater(DietUtils::stopLoadingAnimation);
                     } catch (Exception e) {
                         Platform.runLater(() -> {
                             Text errortext = (Text) scene.lookup("#diet");

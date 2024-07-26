@@ -242,22 +242,25 @@
                                                    <children>
                                                       <Label prefHeight="67.0" prefWidth="408.0" text="Your Diets">
                                                          <font>
-                                                            <Font name="Calibri Bold" size="48.0" />
+                                                            <Font name="Franklin Gothic Book" size="47.0" />
                                                          </font>
                                                          <VBox.margin>
-                                                            <Insets left="25.0" top="10.0" />
+                                                            <Insets left="10.0" top="15.0" />
                                                          </VBox.margin>
                                                       </Label>
                                                    </children>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
                                                 </VBox>
-                                                <VBox prefHeight="76.0" prefWidth="983.0" style="-fx-background-color: #55A537; -fx-background-radius: 20; -fx-background-radius: 20;">
+                                                <VBox prefHeight="80.0" prefWidth="983.0" style="-fx-background-color: #55A537; -fx-background-radius: 20; -fx-background-radius: 20;">
                                                    <VBox.margin>
                                                       <Insets top="20.0" />
                                                    </VBox.margin>
                                                    <children>
                                                       <Label fx:id="diet_one" onMouseClicked="#openDiet1" prefHeight="123.0" prefWidth="716.0" text="Diet #1" textFill="WHITE">
                                                          <font>
-                                                            <Font name="Cambria" size="36.0" />
+                                                            <Font name="Arial Rounded MT Bold" size="36.0" />
                                                          </font>
                                                          <VBox.margin>
                                                             <Insets left="20.0" />
@@ -265,12 +268,12 @@
                                                       </Label>
                                                    </children>
                                                 </VBox>
-                                                <VBox prefHeight="34.0" prefWidth="983.0" />
-                                                <VBox prefHeight="76.0" prefWidth="983.0" style="-fx-background-color: #55A537; -fx-background-radius: 20; -fx-background-radius: 20;">
+                                                <VBox prefHeight="15.0" prefWidth="983.0" />
+                                                <VBox prefHeight="80.0" prefWidth="983.0" style="-fx-background-color: #55A537; -fx-background-radius: 20; -fx-background-radius: 20;">
                                                    <children>
                                                       <Label fx:id="diet_two" onMouseClicked="#openDiet2" prefHeight="123.0" prefWidth="716.0" text="Diet #2" textFill="WHITE">
                                                          <font>
-                                                            <Font name="Cambria" size="36.0" />
+                                                            <Font name="Arial Rounded MT Bold" size="36.0" />
                                                          </font>
                                                          <VBox.margin>
                                                             <Insets left="20.0" />
@@ -278,12 +281,12 @@
                                                       </Label>
                                                    </children>
                                                 </VBox>
-                                                <VBox prefHeight="34.0" prefWidth="983.0" />
-                                                <VBox prefHeight="76.0" prefWidth="983.0" style="-fx-background-color: #55A537; -fx-background-radius: 20; -fx-background-radius: 20;">
+                                                <VBox prefHeight="15.0" prefWidth="983.0" />
+                                                <VBox prefHeight="80.0" prefWidth="983.0" style="-fx-background-color: #55A537; -fx-background-radius: 20; -fx-background-radius: 20;">
                                                    <children>
                                                       <Label fx:id="diet_three" onMouseClicked="#openDiet3" prefHeight="123.0" prefWidth="716.0" text="Diet #3" textFill="WHITE">
                                                          <font>
-                                                            <Font name="Cambria" size="36.0" />
+                                                            <Font name="Arial Rounded MT Bold" size="36.0" />
                                                          </font>
                                                          <VBox.margin>
                                                             <Insets left="20.0" />
@@ -295,6 +298,9 @@
                                              <effect>
                                                 <DropShadow height="0.0" radius="0.0" width="0.0" />
                                              </effect>
+                                             <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" />
+                                             </padding>
                                           </VBox>
                                        </children>
                                     </HBox>
