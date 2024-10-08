@@ -46,9 +46,9 @@ public class LoginController {
     private static final String FROM_EMAIL = "nutrifusion2024@outlook.com";
     private static final String FROM_EMAIL_PASSWORD = "XNightmareXD123";
 
-    private static final String DB_URL = "jdbc:mysql://uyb.h.filess.io:3307/NutriFusion_writerwise";
-    private static final String DB_USER = "NutriFusion_writerwise";
-    private static final String DB_PASSWORD = "a56eeb0d7ec2c1c9d605150d8e3a40b536aa35ff";
+    private static final String DB_URL = "jdbc:mysql://1xk-w.h.filess.io:3306/NutriFusion_hurrymind";
+    private static final String DB_USER = "NutriFusion_hurrymind";
+    private static final String DB_PASSWORD = "9ddc15ca4199edde44094f04a4b6e57d67ad5e0d";
     public static HashMap<String, String> email_map = new HashMap<>();
     public static HashMap<String, String> password_map = new HashMap<>();
 
