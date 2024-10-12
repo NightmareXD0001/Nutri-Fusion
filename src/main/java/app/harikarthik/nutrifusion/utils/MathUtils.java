@@ -49,7 +49,7 @@ public class MathUtils {
     }
 
     /**
-     * Display the BMI gauge and results.
+     * Display the BMI results.
      *
      * @param bmi              the calculated BMI
      * @param healthyWeightMin the minimum healthy weight
@@ -79,7 +79,7 @@ public class MathUtils {
     }
 
     /**
-     * Method to draw the BMI gauge and additional health information
+     * Method to tell the BMI and additional health information
      *
      * @param gc               the graphics context to draw on
      * @param bmi              the BMI value to show on the gauge
