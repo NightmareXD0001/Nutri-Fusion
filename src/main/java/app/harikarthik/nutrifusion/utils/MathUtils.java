@@ -1,14 +1,18 @@
 package app.harikarthik.nutrifusion.utils;
 
+import app.harikarthik.nutrifusion.MainApplication;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
+import java.util.Objects;
 
 public class MathUtils {
 
@@ -207,6 +211,7 @@ public class MathUtils {
         );
 
         Button calculateButton = new Button("Calculate Calories");
+        calculateButton.autosize();
         TextArea outputArea = new TextArea();
         outputArea.setEditable(false);
 
@@ -251,6 +256,10 @@ public class MathUtils {
         // Set up the scene for the calculator
         Scene calculatorScene = new Scene(grid, 500, 400);
         calculatorStage.setScene(calculatorScene);
+        calculatorStage.setResizable(false);
+        calculatorStage.centerOnScreen();
+        Image icon = new Image(Objects.requireNonNull(MainApplication.class.getResourceAsStream("logo.png")));
+        calculatorStage.getIcons().add(icon);
         calculatorStage.show();
     }
 
