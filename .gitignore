@@ -11,6 +11,7 @@ target/
 diet1.txt
 diet2.txt
 diet3.txt
+data.json
 *.iws
 *.iml
 *.ipr
