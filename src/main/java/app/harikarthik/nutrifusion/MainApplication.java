@@ -42,6 +42,7 @@ public class MainApplication extends Application {
                 primaryStage.setResizable(false);
                 primaryStage.centerOnScreen();
                 primaryStage.show();
+                System.out.println("Software Loaded");
                 switchDashboard();
             }
 
@@ -56,6 +57,7 @@ public class MainApplication extends Application {
                 primaryStage.setResizable(false);
                 primaryStage.centerOnScreen();
                 primaryStage.show();
+                System.out.println("Software Loaded");
                 switchDashboard();
             }
         } catch (IOException e) {

@@ -464,4 +464,7 @@ public class MainController {
         });
     }
 
+    public void onCalorieCalculateClick(){
+        MathUtils.openCalorieCalculator();
+    }
 }
