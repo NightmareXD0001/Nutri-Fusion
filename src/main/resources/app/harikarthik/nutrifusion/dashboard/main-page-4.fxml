@@ -242,7 +242,7 @@
                                                    <children>
                                                       <HBox prefHeight="177.0" prefWidth="983.0">
                                                          <children>
-                                                            <Label fx:id="bmibutton" alignment="CENTER" prefHeight="162.0" prefWidth="491.0" style="-fx-background-color: #fb3c3c; -fx-background-radius: 25;" text="Click to Calculate BMI">
+                                                            <Label fx:id="bmibutton" alignment="CENTER" prefHeight="162.0" prefWidth="491.0" style="-fx-background-color: #fb3c3c; -fx-background-radius: 25;" text="Click to Calculate BMI" onMouseClicked="#onbmiCalculateClick">
                                                                <font>
                                                                   <Font name="Calibri Bold" size="32.0" />
                                                                </font>

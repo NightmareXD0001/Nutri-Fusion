@@ -2,6 +2,7 @@ package app.harikarthik.nutrifusion.dashboard;
 
 import app.harikarthik.nutrifusion.MainApplication;
 import app.harikarthik.nutrifusion.login.LoginController;
+import app.harikarthik.nutrifusion.utils.MathUtils;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -79,7 +80,7 @@ public class MainController {
     private void openWorkDialog(String diet_name, String age, String gender, String weight, String height, String primary_goal, String dietary_preferences, String food_allergies, String activity_level, String daily_calorie_intake, Stage stage) {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Enter your job");
-        dialog.setHeaderText("Enter a brief description about your job and your daily routines for the diet plan:");
+        dialog.setHeaderText("Enter a brief description about your job :");
         dialog.setContentText("Prompt:");
         try {
             Field dialogPaneField = dialog.getClass().getDeclaredField("dialogPane");
@@ -365,6 +366,60 @@ public class MainController {
 
     public void ondietCreateClick(){
         openDietNameDialog(MainApplication.primaryStage);
+    }
+    public void onbmiCalculateClick(){
+        openBMICalculator(MainApplication.primaryStage);
+    }
+
+    private void openBMICalculator(Stage stage) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Enter Weight");
+        dialog.setHeaderText("Enter Your Weight (in kg):");
+        dialog.setContentText("Weight:");
+        try {
+            Field dialogPaneField = dialog.getClass().getDeclaredField("dialogPane");
+            dialogPaneField.setAccessible(true);
+            Object dialogPane = dialogPaneField.get(dialog);
+
+            Field sceneField = dialogPane.getClass().getDeclaredField("scene");
+            sceneField.setAccessible(true);
+            Scene dialogScene = (Scene) sceneField.get(dialogPane);
+
+            Platform.runLater(() -> {
+                Stage dialogStage = (Stage) dialogScene.getWindow();
+                dialogStage.getIcons().add(new Image("src/main/resources/app/harikarthik/nutrifusion/logo.png"));
+            });
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        // Get the user input
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(weight -> openBMICalculatorHeight(Integer.parseInt(weight), stage));
+    }
+    private void openBMICalculatorHeight(int weight, Stage stage) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Enter Height");
+        dialog.setHeaderText("Enter Your Height (in cm):");
+        dialog.setContentText("Height:");
+        try {
+            Field dialogPaneField = dialog.getClass().getDeclaredField("dialogPane");
+            dialogPaneField.setAccessible(true);
+            Object dialogPane = dialogPaneField.get(dialog);
+
+            Field sceneField = dialogPane.getClass().getDeclaredField("scene");
+            sceneField.setAccessible(true);
+            Scene dialogScene = (Scene) sceneField.get(dialogPane);
+
+            Platform.runLater(() -> {
+                Stage dialogStage = (Stage) dialogScene.getWindow();
+                dialogStage.getIcons().add(new Image("src/main/resources/app/harikarthik/nutrifusion/logo.png"));
+            });
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        // Get the user input
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(height -> MathUtils.calculateBMI(weight, Integer.parseInt(height)));
     }
     public void openDiet1(){
         File file = new File("diet1.txt");
