@@ -8,6 +8,9 @@ target/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+diet1.txt
+diet2.txt
+diet3.txt
 *.iws
 *.iml
 *.ipr
