@@ -269,7 +269,7 @@
                                                    <children>
                                                       <HBox prefHeight="177.0" prefWidth="983.0">
                                                          <children>
-                                                            <Label alignment="CENTER" prefHeight="162.0" prefWidth="491.0" style="-fx-background-color: #fb3c3c; -fx-background-radius: 25;" text="Click to Calculate BMI">
+                                                            <Label alignment="CENTER" prefHeight="162.0" prefWidth="491.0" style="-fx-background-color: #fb3c3c; -fx-background-radius: 25;" text="Click to Calculate Macro Nutrients" onMouseClicked="#onMacrocalculateClick">
                                                                <font>
                                                                   <Font name="Calibri Bold" size="32.0" />
                                                                </font>

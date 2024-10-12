@@ -412,7 +412,8 @@ public class MainController {
 
             Platform.runLater(() -> {
                 Stage dialogStage = (Stage) dialogScene.getWindow();
-                dialogStage.getIcons().add(new Image("src/main/resources/app/harikarthik/nutrifusion/logo.png"));
+                Image icon = new Image(Objects.requireNonNull(MainApplication.class.getResourceAsStream("logo.png")));
+                dialogStage.getIcons().add(icon);
             });
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
@@ -466,5 +467,8 @@ public class MainController {
 
     public void onCalorieCalculateClick(){
         MathUtils.openCalorieCalculator();
+    }
+    public void onMacrocalculateClick(){
+        MathUtils.openMacroCalculator();
     }
 }

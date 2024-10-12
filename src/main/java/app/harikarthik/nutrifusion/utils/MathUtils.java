@@ -263,6 +263,128 @@ public class MathUtils {
         calculatorStage.show();
     }
 
+
+    public static void openMacroCalculator() {
+        Stage calculatorStage = new Stage();
+        calculatorStage.setTitle("Calorie & Macro Calculator");
+
+        // Create UI elements
+        TextField weightField = new TextField();
+        TextField heightField = new TextField();
+        TextField ageField = new TextField();
+        ComboBox<String> genderCombo = new ComboBox<>();
+        genderCombo.getItems().addAll("Male", "Female");
+        ComboBox<String> activityLevelCombo = new ComboBox<>();
+        activityLevelCombo.getItems().addAll(
+                "Sedentary (little or no exercise)",
+                "Lightly active (light exercise/sports 1-3 days/week)",
+                "Moderately active (moderate exercise/sports 3-5 days/week)",
+                "Very active (hard exercise/sports 6-7 days a week)",
+                "Super active (very hard exercise/physical job)"
+        );
+
+        Button calculateButton = new Button("Calculate Macros");
+        calculateButton.autosize();
+        TextArea outputArea = new TextArea();
+        outputArea.setEditable(false);
+
+        // Set up grid layout for the calculator
+        GridPane grid = new GridPane();
+        grid.setVgap(10);
+        grid.setHgap(10);
+        grid.add(new Label("Weight (kg):"), 0, 0);
+        grid.add(weightField, 1, 0);
+        grid.add(new Label("Height (cm):"), 0, 1);
+        grid.add(heightField, 1, 1);
+        grid.add(new Label("Age (years):"), 0, 2);
+        grid.add(ageField, 1, 2);
+        grid.add(new Label("Gender:"), 0, 3);
+        grid.add(genderCombo, 1, 3);
+        grid.add(new Label("Activity Level:"), 0, 4);
+        grid.add(activityLevelCombo, 1, 4);
+        grid.add(calculateButton, 0, 5);
+        grid.add(new Label("Caloric Needs and Macronutrient Breakdown:"), 0, 6);
+        grid.add(outputArea, 1, 6);
+
+        // Calculate button action
+        calculateButton.setOnAction(e -> {
+            try {
+                double weight = Double.parseDouble(weightField.getText());
+                double height = Double.parseDouble(heightField.getText());
+                int age = Integer.parseInt(ageField.getText());
+                String gender = genderCombo.getValue();
+                String activityLevel = activityLevelCombo.getValue();
+
+                if (gender == null || activityLevel == null) {
+                    showAlert("Input Error", "Please select gender and activity level.");
+                    return;
+                }
+
+                calculateCaloriesAndMacros(weight, height, age, gender, activityLevel, outputArea);
+            } catch (NumberFormatException ex) {
+                showAlert("Input Error", "Please enter valid numbers for weight, height, and age.");
+            }
+        });
+
+        // Set up the scene for the calculator
+        Scene calculatorScene = new Scene(grid, 500, 400);
+        calculatorStage.setScene(calculatorScene);
+        calculatorStage.setResizable(false);
+        calculatorStage.centerOnScreen();
+        Image icon = new Image(Objects.requireNonNull(MainApplication.class.getResourceAsStream("logo.png")));
+        calculatorStage.getIcons().add(icon);
+        calculatorStage.show();
+    }
+
+    private static void calculateCaloriesAndMacros(double weight, double height, int age, String gender, String activityLevel, TextArea outputArea) {
+        // Calculate BMR using Mifflin-St Jeor Equation
+        double bmr;
+        if (gender.equals("Male")) {
+            bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+        } else {
+            bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+        }
+
+        // Adjust BMR based on activity level
+        double activityMultiplier = getActivityMultiplier(activityLevel);
+        double totalCalories = bmr * activityMultiplier;
+
+        // Calculate macronutrients based on common macro distribution (example: 30% protein, 40% carbs, 30% fats)
+        double proteinCalories = totalCalories * 0.30;
+        double carbsCalories = totalCalories * 0.40;
+        double fatsCalories = totalCalories * 0.30;
+
+        // Convert calories to grams
+        double proteinGrams = proteinCalories / 4; // 1g of protein = 4 calories
+        double carbsGrams = carbsCalories / 4;     // 1g of carbs = 4 calories
+        double fatsGrams = fatsCalories / 9;       // 1g of fat = 9 calories
+
+        // Display results in the output area
+        outputArea.setText(String.format("Total Daily Calories: %.2f kcal\n\n", totalCalories) +
+                String.format("Protein: %.2f grams (30%%)\n", proteinGrams) +
+                String.format("Carbohydrates: %.2f grams (40%%)\n", carbsGrams) +
+                String.format("Fats: %.2f grams (30%%)\n", fatsGrams));
+    }
+
+    private static double getActivityMultiplier(String activityLevel) {
+        switch (activityLevel) {
+            case "Sedentary (little or no exercise)":
+                return 1.2;
+            case "Lightly active (light exercise/sports 1-3 days/week)":
+                return 1.375;
+            case "Moderately active (moderate exercise/sports 3-5 days/week)":
+                return 1.55;
+            case "Very active (hard exercise/sports 6-7 days a week)":
+                return 1.725;
+            case "Super active (very hard exercise/physical job)":
+                return 1.9;
+            default:
+                return 1.0; // Default to no adjustment if unknown activity level
+        }
+    }
+
+
+
     private static void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);
