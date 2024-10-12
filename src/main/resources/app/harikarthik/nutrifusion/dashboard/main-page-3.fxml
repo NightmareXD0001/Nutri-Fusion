@@ -96,7 +96,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="216.0">
                <children>
-                  <Label onMouseClicked="#switchpage3" text="Contact Us" textFill="WHITE">
+                  <Label onMouseClicked="#switchpage4" text="Utilities" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="22.0" />
                      </font>

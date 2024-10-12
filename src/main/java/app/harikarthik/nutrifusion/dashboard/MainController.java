@@ -71,6 +71,8 @@ public class MainController {
     }
     public void switchpage3(){
         MainApplication.switchDashboard3();
+    }public void switchpage4(){
+        MainApplication.switchDashboard4();
     }
 
 

@@ -25,9 +25,11 @@ public class MainApplication extends Application {
     private static Scene dashboardScene;
     private static Scene dashboardScene2;
     private static Scene dashboardScene3;
+    private static Scene dashboardScene4;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        System.out.println("Software Loading...");
         try {
             if (!LoginController.checkfirstJoin()) {
                 MainApplication.primaryStage = primaryStage;
@@ -40,7 +42,9 @@ public class MainApplication extends Application {
                 primaryStage.setResizable(false);
                 primaryStage.centerOnScreen();
                 primaryStage.show();
+                switchDashboard();
             }
+
             else {
                 MainApplication.primaryStage = primaryStage;
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login/login.fxml")));
@@ -52,6 +56,7 @@ public class MainApplication extends Application {
                 primaryStage.setResizable(false);
                 primaryStage.centerOnScreen();
                 primaryStage.show();
+                switchDashboard();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -149,6 +154,27 @@ public class MainApplication extends Application {
             controller.setUsername();
             controller.setGenderLogo();
             primaryStage.setScene(dashboardScene3);
+            primaryStage.setResizable(false);
+            PauseTransition pause = new PauseTransition(Duration.millis(10));
+            pause.setOnFinished(event -> {
+                primaryStage.centerOnScreen();
+            });
+            pause.play();
+            primaryStage.setTitle("Nutri Fusion v1.14.74 stable-build");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void switchDashboard4() {
+        try {
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(MainApplication.class.getResource("dashboard/main-page-4.fxml")));
+            Parent root = loader.load();
+            MainApplication.dashboardScene4 = new Scene(root);
+            MainController controller = loader.getController();
+            controller.setUsername();
+            controller.setGenderLogo();
+            primaryStage.setScene(dashboardScene4);
             primaryStage.setResizable(false);
             PauseTransition pause = new PauseTransition(Duration.millis(10));
             pause.setOnFinished(event -> {
