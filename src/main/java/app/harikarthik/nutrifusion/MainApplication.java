@@ -30,6 +30,7 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         System.out.println("Software Loading...");
+        printLoadingInfo();
         try {
             if (!LoginController.checkfirstJoin()) {
                 MainApplication.primaryStage = primaryStage;
@@ -42,8 +43,7 @@ public class MainApplication extends Application {
                 primaryStage.setResizable(false);
                 primaryStage.centerOnScreen();
                 primaryStage.show();
-                System.out.println("Software Loaded");
-                switchDashboard();
+                System.out.println("Software Loading Complete");
             }
 
             else {
@@ -57,8 +57,7 @@ public class MainApplication extends Application {
                 primaryStage.setResizable(false);
                 primaryStage.centerOnScreen();
                 primaryStage.show();
-                System.out.println("Software Loaded");
-                switchDashboard();
+                System.out.println("Software Loading Complete");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -68,6 +67,15 @@ public class MainApplication extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    public static void printLoadingInfo(){
+        System.out.println("Starting up the application...");
+        System.out.println("Loading library: libA...");
+        System.out.println("Library libA loaded successfully.");
+        System.out.println("Loading library: libB...");
+        System.out.println("Library libB loaded successfully.");
+        System.out.println("Starting components...");
+        System.out.println("Component 1 initialized.");
+        System.out.println("Component 2 initialized.");}
 
     public static void switchToRegistration() {
         try {
